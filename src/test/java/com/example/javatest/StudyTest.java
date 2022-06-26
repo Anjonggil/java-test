@@ -22,9 +22,7 @@ class StudyTest {
 //        String test_env = System.getenv("TEST_ENV");
 //        System.out.println(test_env);
 //        Assumptions.assumeTrue("LOCAL".equalsIgnoreCase(test_env));
-        Study study = new Study();
-        assertNotNull(study);
-        assertEquals(StudyStatus.DRAFT,study.getStudyStatus(), () -> "스터디가 생성되면 처음상태는 " +StudyStatus.DRAFT+ " 여야만한다");
+//        assertEquals(StudyStatus.DRAFT,study.getStudyStatus(), () -> "스터디가 생성되면 처음상태는 " +StudyStatus.DRAFT+ " 여야만한다");
 
         System.out.println("create");
     }
