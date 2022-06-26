@@ -9,14 +9,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // 단위 테스트가 아닌 유즈 케이스 테스트시에 의미가 있음
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
 
+    int value;
+
     @Test
+    @Order(1)
     @DisplayName("스터디 만들기") // 이거 사용하자
     void create(){
-        String test_env = System.getenv("TEST_ENV");
-        System.out.println(test_env);
-        Assumptions.assumeTrue("LOCAL".equalsIgnoreCase(test_env));
+//        String test_env = System.getenv("TEST_ENV");
+//        System.out.println(test_env);
+//        Assumptions.assumeTrue("LOCAL".equalsIgnoreCase(test_env));
         Study study = new Study();
         assertNotNull(study);
         assertEquals(StudyStatus.DRAFT,study.getStudyStatus(), () -> "스터디가 생성되면 처음상태는 " +StudyStatus.DRAFT+ " 여야만한다");
@@ -24,6 +29,7 @@ class StudyTest {
         System.out.println("create");
     }
 
+    @Order(2)
     @RepeatedTest(value = 10, name = "{displayedName}")
     @DisplayName("반복 테스트 학습")
     void repeat(RepetitionInfo repetitionInfo){
@@ -31,6 +37,7 @@ class StudyTest {
                 repetitionInfo.getTotalRepetitions());
     }
 
+    @Order(3)
     @ParameterizedTest
 //    @ValueSource(strings = {"날씨가","많이","더워지고","있네요"})
     @CsvSource({"10,'자바 스터디'","20,스프링"})
@@ -46,12 +53,12 @@ class StudyTest {
     }
 
     @BeforeAll
-    static void beforeAll(){
+    void beforeAll(){
         System.out.println("before All");
     }
 
     @AfterAll
-    static void afterAll(){
+    void afterAll(){
         System.out.println("after All");
     }
 
