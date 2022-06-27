@@ -31,13 +31,13 @@ public class StudyService {
         memberService.notify(newStudy);
         return newStudy;
     }
-//
-//    public Study openStudy(Study study){
-//        study.open();
-//        Study openedStudy = studyRepository.save(study);
-//        memberService.notify(openedStudy);
-//        return openedStudy;
-//    }
+
+    public Study openStudy(Study study){
+        study.open();
+        Study openedStudy = studyRepository.save(study);
+        memberService.notify(openedStudy);
+        return openedStudy;
+    }
 
     public void hi(){
 
