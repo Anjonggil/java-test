@@ -99,7 +99,7 @@ class StudyServiceTest {
         then(memberService).should(times(1)).notify(study);
     }
 
-    @DisplayName("다른 사용자가 볼 수 있도록 스터디를 공개한다.")
+    @DisplayName("다른 사용자가 볼 수 있도록 스터디를 공개한다")
     @Test
     void openStudyTest(){
         Study study = new Study(10,"자바 테스트");
